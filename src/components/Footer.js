@@ -40,6 +40,7 @@ export default function Footer() {
           </p>
           <div style={{ display: "flex", gap: 20 }}>
             <div
+              onClick={() => {}}
               style={{
                 backgroundColor: "white",
                 height: 42,
@@ -48,11 +49,13 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                cursor: "pointer",
               }}
             >
               <TiSocialFacebook size={20} color="#00174E" />
             </div>
             <div
+              onClick={() => {}}
               style={{
                 backgroundColor: "white",
                 height: 42,
@@ -61,11 +64,13 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                cursor: "pointer",
               }}
             >
               <RiInstagramFill size={20} color="#00174E" />
             </div>
             <div
+              onClick={() => {}}
               style={{
                 backgroundColor: "white",
                 height: 42,
@@ -74,11 +79,13 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                cursor: "pointer",
               }}
             >
               <IoLogoLinkedin size={20} color="#00174E" />
             </div>
             <div
+              onClick={() => {}}
               style={{
                 backgroundColor: "white",
                 height: 42,
@@ -87,6 +94,7 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                cursor: "pointer",
               }}
             >
               <IoLogoWhatsapp size={20} color="#00174E" />
