@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <div>
       <Header />
-      AboutPage
+      <div style={{ height: 100 }}>AboutPage</div>
       <Footer />
     </div>
   );

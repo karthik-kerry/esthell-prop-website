@@ -10,14 +10,15 @@ import { FaChevronRight } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div style={{ position: "absolute", bottom: 0, width: "100%" }}>
+    <div >
       <div
         style={{
           backgroundColor: "#00174E",
-          height: 250,
+          height: 200,
           padding: 70,
           display: "flex",
           justifyContent: "space-between",
+          
         }}
       >
         <div style={{ flex: 1, marginRight: "10%" }}>
