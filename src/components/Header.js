@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/logo.png";
 import { Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
+  const location = useLocation();
+  const [hoveredLink, setHoveredLink] = useState(null);
+
+  const linkStyle = (path) => ({
+    fontSize: 16,
+    fontWeight: "500",
+    color: location.pathname === path ? "#001C6B" : "#2D2D2D99",
+    textDecoration: "none",
+    transition: "color 0.3s",
+  });
+
+  const hoverStyle = {
+    color: "#001C6B",
+  };
+
   return (
     <div
       style={{
@@ -26,50 +41,25 @@ export default function Header() {
           gap: 25,
         }}
       >
-        <Link
-          to="/"
-          style={{
-            fontSize: 16,
-            fontWeight: "500",
-            color: "#001C6B",
-            textDecoration: "none",
-          }}
-        >
-          Home
-        </Link>
-        <Link
-          to="/"
-          style={{
-            fontSize: 16,
-            fontWeight: "500",
-            color: "#2D2D2D99",
-            textDecoration: "none",
-          }}
-        >
-          Listings
-        </Link>
-        <Link
-          to="/"
-          style={{
-            fontSize: 16,
-            fontWeight: "500",
-            color: "#2D2D2D99",
-            textDecoration: "none",
-          }}
-        >
-          About Us
-        </Link>
-        <Link
-          to="/"
-          style={{
-            fontSize: 16,
-            fontWeight: "500",
-            color: "#2D2D2D99",
-            textDecoration: "none",
-          }}
-        >
-          Contact Us
-        </Link>
+        {[
+          { name: "Home", path: "/" },
+          { name: "Listings", path: "/listings" },
+          { name: "About Us", path: "/about" },
+          { name: "Contact Us", path: "/contact" },
+        ].map((link) => (
+          <Link
+            key={link.name}
+            to={link.path}
+            style={{
+              ...linkStyle(link.path),
+              ...(hoveredLink === link.name ? hoverStyle : {}),
+            }}
+            onMouseEnter={() => setHoveredLink(link.name)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            {link.name}
+          </Link>
+        ))}
       </div>
       <Button
         onClick={() => {}}

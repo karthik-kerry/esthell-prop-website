@@ -6,37 +6,33 @@ import { TiSocialFacebook } from "react-icons/ti";
 import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { FaChevronRight } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div
-      style={{
-        width: "100%",
-      }}
-    >
+    <div style={{ position: "absolute", bottom: 0, width: "100%" }}>
       <div
         style={{
           backgroundColor: "#00174E",
           height: 250,
-          padding: 50,
+          padding: 70,
           display: "flex",
-          alignI: "center",
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <div style={{ flex: 1, marginRight: "10%" }}>
           <p style={{ color: "#FFFFFF", fontWeight: "600", fontSize: 18 }}>
             Get Our App
           </p>
           <p style={{ color: "white", fontSize: 16 }}>
             Download the app and book your property
           </p>
-          <div>
-            <Link to="/" style={{ marginRight: 20 }}>
-              <img src={Playstore} style={{ width: "22%" }} />
+          <div style={{ display: "flex", gap: 20 }}>
+            <Link to="/">
+              <img src={Playstore} style={{ width: 150 }} />
             </Link>
             <Link to="/">
-              <img src={Appstore} style={{ width: "22%" }} />
+              <img src={Appstore} style={{ width: 150 }} />
             </Link>
           </div>
           <p style={{ color: "white", fontSize: 18, fontWeight: "600" }}>
@@ -97,10 +93,311 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div>div2</div>
-        <div>div3</div>
-        <div>div4</div>
-        <div>div5</div>
+        <div style={{ flex: 1, marginRight: 20 }}>
+          <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
+            Explore
+          </p>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Listings
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Listings
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Listings
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Listings
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Listings
+          </Link>
+        </div>
+        <div style={{ flex: 1, marginRight: 20 }}>
+          <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
+            Categories
+          </p>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Apartments
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Home
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Office
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Villas
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Flat
+          </Link>
+        </div>
+        <div style={{ flex: 1, marginRight: 20 }}>
+          <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
+            Locations
+          </p>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Chennai
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Coimbatore
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Salem
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Tiruvallur
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Madurai
+          </Link>
+        </div>
+        <div style={{ flex: 1 }}>
+          <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
+            Quick Links
+          </p>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            About
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            FAQ
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Terms & Conditions
+          </Link>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+              color: "white",
+              textDecoration: "none",
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            <FaChevronRight size={16} color="white" />
+            Privacy Policy
+          </Link>
+        </div>
       </div>
       <div
         style={{
