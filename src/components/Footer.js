@@ -101,7 +101,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div style={{ flex: 1, marginRight: 20 }}>
+        <div style={{ flex: 1, marginRight: "10%" }}>
           <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
             Explore
           </p>
@@ -181,7 +181,7 @@ export default function Footer() {
             Listings
           </Link>
         </div>
-        <div style={{ flex: 1, marginRight: 20 }}>
+        <div style={{ flex: 1, marginRight: "10%" }}>
           <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
             Categories
           </p>
@@ -261,7 +261,7 @@ export default function Footer() {
             Flat
           </Link>
         </div>
-        <div style={{ flex: 1, marginRight: 20 }}>
+        <div style={{ flex: 1, marginRight: "10%" }}>
           <p style={{ color: "white", fontWeight: "600", fontSize: 20 }}>
             Locations
           </p>
@@ -346,7 +346,7 @@ export default function Footer() {
             Quick Links
           </p>
           <Link
-            to="/"
+            to="/about"
             style={{
               display: "flex",
               gap: 10,
