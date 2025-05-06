@@ -13,7 +13,7 @@ import { MdMail } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <div style={{ position: "absolute", bottom: 0, width: "100%" }}>
+    <div >
       <div
         style={{
           backgroundColor: "#A6D5CF",
@@ -123,10 +123,11 @@ export default function Footer() {
       <div
         style={{
           backgroundColor: "#00174E",
-          height: 250,
+          height: 200,
           padding: 70,
           display: "flex",
           justifyContent: "space-between",
+          
         }}
       >
         <div style={{ flex: 1, marginRight: "10%" }}>

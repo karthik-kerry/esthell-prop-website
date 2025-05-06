@@ -6,7 +6,7 @@ export default function ContactPage() {
   return (
     <div>
       <Header />
-      ContactPage
+     <div style={{ height: 100 }}>ContactPage</div>
       <Footer />
     </div>
   );
