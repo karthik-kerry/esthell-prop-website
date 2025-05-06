@@ -7,10 +7,119 @@ import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaChevronRight } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 
 export default function Footer() {
   return (
     <div style={{ position: "absolute", bottom: 0, width: "100%" }}>
+      <div
+        style={{
+          backgroundColor: "#A6D5CF",
+          width: "100%",
+          minHeight: 94,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            marginLeft: 80,
+          }}
+        >
+          <div
+            style={{
+              height: 32,
+              width: 32,
+              backgroundColor: "#FFFFFF",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <FaLocationDot />
+          </div>
+          <p
+            style={{
+              color: "#1b1b1b",
+              fontSize: 15,
+              fontWeight: "500",
+              textAlign: "left",
+              maxWidth: "500px",
+            }}
+          >
+            TS No: 1/10, No: 176, Inner Ring Road (South Segment), Velachery,
+            opp. Sunshine School, Chennai, Tamil Nadu 600042
+          </p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          <div
+            style={{
+              height: 32,
+              width: 32,
+              backgroundColor: "#FFFFFF",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <FaPhoneAlt />
+          </div>
+          <div>
+            <p style={{ color: "#1b1b1b", fontSize: 15, fontWeight: "500" }}>
+              +91-88888 88888
+            </p>
+            <p style={{ color: "#1b1b1b", fontSize: 15, fontWeight: "500" }}>
+              +91-88888 88888
+            </p>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            marginRight: 80,
+          }}
+        >
+          <div
+            style={{
+              height: 32,
+              width: 32,
+              backgroundColor: "#FFFFFF",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <MdMail />
+          </div>
+          <p style={{ color: "#1b1b1b", fontSize: 15, fontWeight: "500" }}>
+            info@esthell.com
+          </p>
+        </div>
+      </div>
       <div
         style={{
           backgroundColor: "#00174E",
