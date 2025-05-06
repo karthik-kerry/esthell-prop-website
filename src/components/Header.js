@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <div
       style={{
-        height: 123,
+        height: 100,
         width: "100%",
         backgroundColor: "white",
         display: "flex",
@@ -33,7 +33,7 @@ export default function Header() {
       }}
     >
       <Link to="/">
-        <img src={Logo} style={{ marginLeft: 20, height: 89, width: 80 }} />
+        <img src={Logo} style={{ marginLeft: 20, height: 69, width: 60 }} />
       </Link>
       <div
         style={{
