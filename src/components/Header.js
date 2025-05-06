@@ -32,7 +32,9 @@ export default function Header() {
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <img src={Logo} style={{ marginLeft: 20, height: 89, width: 80 }} />
+      <Link to="/">
+        <img src={Logo} style={{ marginLeft: 20, height: 89, width: 80 }} />
+      </Link>
       <div
         style={{
           display: "flex",
