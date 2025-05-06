@@ -2,10 +2,12 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-export default function SearchPage() {
+export default function AboutPage() {
   return (
-    
-      <div>SearchPage</div>
-     
+    <div>
+      <Header />
+      AboutPage
+      <Footer />
+    </div>
   );
 }
