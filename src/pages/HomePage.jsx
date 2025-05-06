@@ -4,9 +4,9 @@ import Footer from "../components/Footer";
 
 export default function HomePage() {
   return (
-    <div >
+    <div>
       <Header />
-      <div style={{height:100}}>content</div>
+      <div>content</div>
       <Footer />
     </div>
   );
