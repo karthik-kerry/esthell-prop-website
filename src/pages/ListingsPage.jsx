@@ -1061,10 +1061,9 @@ export default function ListingsPage() {
                 onClick={() => {}}
                 style={{
                   height: 300,
-                  width: "91%",
-                  gap: 24,
+                  width: "93%",
                   display: "flex",
-                  flexDirection: "row",
+                  justifyContent: "space-between",
                   borderRadius: 20,
                   backgroundColor: "white",
                   borderStyle: "solid",
@@ -1094,7 +1093,7 @@ export default function ListingsPage() {
                       style={{
                         height: 298,
                         width: "100%",
-                        maxWidth: "400px",
+                        maxWidth: 400,
                         borderRadius: 12,
                         objectFit: "cover",
                       }}
