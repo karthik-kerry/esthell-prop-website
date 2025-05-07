@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroBg from "../assets/hero_bg.png";
@@ -21,6 +21,19 @@ import { FaChevronLeft } from "react-icons/fa";
 import { LuBedDouble } from "react-icons/lu";
 import { PiBathtub } from "react-icons/pi";
 import { AiOutlineHome } from "react-icons/ai";
+import Chennai from "../assets/chennai.png";
+import Coimbatore from "../assets/coimbatore.png";
+import Madurai from "../assets/madurai.png";
+import Trichy from "../assets/trichy.png";
+import Tirunelvelli from "../assets/tirunelvelli.png";
+import Tiruppur from "../assets/tiruppur.png";
+import Bangalore from "../assets/bangalore.png";
+import Erode from "../assets/erode.png";
+import Salem from "../assets/salem.png";
+import EsthellFlats from "../assets/esthell_apartments.png";
+import Logo from "../assets/logo.png";
+import { FaPhone } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 const items = [
   {
@@ -54,8 +67,27 @@ const items = [
 
 export default function HomePage() {
   const scrollContainerRef = useRef(null);
+  const topScrollContainerRef = useRef(null);
+  const bottomScrollContainerRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeButton, setActiveButton] = useState("buy");
+
+  const buttonStyles = (isActive) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    backgroundColor: isActive ? "#001C6B" : "#FFFFFF",
+    height: 56,
+    width: "auto",
+    borderRadius: 12,
+    color: isActive ? "white" : "#2D2D2D99",
+    border: "none",
+    fontSize: 16,
+    fontWeight: "500",
+    cursor: "pointer",
+  });
 
   const images = [Property, Property1];
 
@@ -71,6 +103,7 @@ export default function HomePage() {
 
   const handleMouseDown = (e) => {
     const container = scrollContainerRef.current;
+    if (!container) return;
     container.isDragging = true;
     container.startX = e.pageX - container.offsetLeft;
     container.scrollLeftStart = container.scrollLeft;
@@ -78,7 +111,7 @@ export default function HomePage() {
 
   const handleMouseMove = (e) => {
     const container = scrollContainerRef.current;
-    if (!container.isDragging) return;
+    if (!container || !container.isDragging) return;
     e.preventDefault();
     const x = e.pageX - container.offsetLeft;
     const walk = (x - container.startX) * 2;
@@ -87,6 +120,7 @@ export default function HomePage() {
 
   const handleMouseUpOrLeave = () => {
     const container = scrollContainerRef.current;
+    if (!container) return;
     container.isDragging = false;
   };
 
@@ -95,7 +129,14 @@ export default function HomePage() {
       <Header />
       {/* Hero Section */}
       <div>
-        <div style={{ position: "relative", width: "100%", height: 620 }}>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: 620,
+            overflow: "hidden",
+          }}
+        >
           <img
             src={HeroBg}
             style={{ width: "100%", objectFit: "cover", height: "100%" }}
@@ -146,7 +187,7 @@ export default function HomePage() {
           style={{
             position: "absolute",
             zIndex: 100,
-            top: "27.2%",
+            bottom: "12.8%",
             right: "10%",
             height: "60%",
             width: "25%",
@@ -173,63 +214,30 @@ export default function HomePage() {
             }}
           >
             <Button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                backgroundColor: "#001C6B",
-                height: 56,
-                width: "auto",
-                borderRadius: 12,
-                color: "white",
-                border: "none",
-                fontSize: 16,
-                fontWeight: "500",
-              }}
-              onClick={() => {}}
+              style={buttonStyles(activeButton === "buy")}
+              onClick={() => setActiveButton("buy")}
             >
-              <TbHomeDollar color="white" />
+              <TbHomeDollar
+                color={activeButton === "buy" ? "white" : "#2D2D2D99"}
+              />
               Buy a Property
             </Button>
             <Button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                backgroundColor: "#FFFFFF",
-                height: 56,
-                width: "auto",
-                borderRadius: 12,
-                color: "#2D2D2D99",
-                border: "none",
-                fontSize: 16,
-                fontWeight: "500",
-              }}
-              onClick={() => {}}
+              style={buttonStyles(activeButton === "rent")}
+              onClick={() => setActiveButton("rent")}
             >
-              <TbHomeDollar color="#2D2D2D99" />
+              <TbHomeDollar
+                color={activeButton === "rent" ? "white" : "#2D2D2D99"}
+              />
               Rent a Property
             </Button>
             <Button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                backgroundColor: "#FFFFFF",
-                height: 56,
-                width: "auto",
-                borderRadius: 12,
-                color: "#2D2D2D99",
-                border: "none",
-                fontSize: 16,
-                fontWeight: "500",
-              }}
-              onClick={() => {}}
+              style={buttonStyles(activeButton === "commercial")}
+              onClick={() => setActiveButton("commercial")}
             >
-              <TbHomeDollar color="#2D2D2D99" />
+              <TbHomeDollar
+                color={activeButton === "commercial" ? "white" : "#2D2D2D99"}
+              />
               Commercial
             </Button>
           </div>
@@ -416,6 +424,15 @@ export default function HomePage() {
               justifyContent: "center",
               backgroundColor: "white",
               padding: 20,
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
             <img src={SearchIcon} style={{ width: 72, marginBottom: 10 }} />
@@ -455,6 +472,15 @@ export default function HomePage() {
               justifyContent: "center",
               backgroundColor: "white",
               padding: 20,
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
             <img src={SelectIcon} style={{ width: 72, marginBottom: 10 }} />
@@ -494,6 +520,15 @@ export default function HomePage() {
               justifyContent: "center",
               backgroundColor: "white",
               padding: 20,
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
             <img src={BookIcon} style={{ width: 72, marginBottom: 10 }} />
@@ -744,9 +779,31 @@ export default function HomePage() {
               borderColor: "#001C6B",
               borderRadius: 24,
               padding: 20,
+              backgroundColor: "white",
+              transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#001C6B";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = "white";
+              });
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "white";
+              e.currentTarget.style.boxShadow = "none";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = p.dataset.defaultColor || "#1B1B1B";
+              });
             }}
           >
             <p
+              data-default-color="#1B1B1B"
               style={{
                 color: "#1B1B1B",
                 fontWeight: "600",
@@ -756,7 +813,10 @@ export default function HomePage() {
             >
               Verified Listings
             </p>
-            <p style={{ color: "#1B1B1BCC", fontSize: 16 }}>
+            <p
+              data-default-color="#1B1B1BCC"
+              style={{ color: "#1B1B1BCC", fontSize: 16 }}
+            >
               All properties are reviewed to ensure trust and transparency.
             </p>
           </div>
@@ -768,14 +828,38 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "flex-start",
               justifyContent: "center",
-              backgroundColor: "#001C6B",
+              borderStyle: "solid",
+              borderWidth: 1,
+              borderColor: "#001C6B",
               borderRadius: 24,
               padding: 20,
+              backgroundColor: "white",
+              transition: "background-color 0.4s ease,  box-shadow 0.4s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#001C6B";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = "white";
+              });
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "white";
+              e.currentTarget.style.boxShadow = "none";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = p.dataset.defaultColor || "#1B1B1B";
+              });
             }}
           >
             <p
+              data-default-color="#1B1B1B"
               style={{
-                color: "white",
+                color: "#1B1B1B",
                 fontWeight: "600",
                 fontSize: 24,
                 lineHeight: 0,
@@ -783,7 +867,10 @@ export default function HomePage() {
             >
               Expert Support
             </p>
-            <p style={{ color: "white", fontSize: 16 }}>
+            <p
+              data-default-color="#1B1B1BCC"
+              style={{ color: "#1B1B1BCC", fontSize: 16 }}
+            >
               Our experienced team is here to guide you throughout your journey.
             </p>
           </div>
@@ -800,9 +887,31 @@ export default function HomePage() {
               borderColor: "#001C6B",
               borderRadius: 24,
               padding: 20,
+              backgroundColor: "white",
+              transition: "background-color 0.4s ease,box-shadow 0.4s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#001C6B";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = "white";
+              });
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "white";
+              e.currentTarget.style.boxShadow = "none";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = p.dataset.defaultColor || "#1B1B1B";
+              });
             }}
           >
             <p
+              data-default-color="#1B1B1B"
               style={{
                 color: "#1B1B1B",
                 fontWeight: "600",
@@ -812,7 +921,10 @@ export default function HomePage() {
             >
               Smart Search Tools
             </p>
-            <p style={{ color: "#1B1B1BCC", fontSize: 16 }}>
+            <p
+              data-default-color="#1B1B1BCC"
+              style={{ color: "#1B1B1BCC", fontSize: 16 }}
+            >
               Advanced filters and map-based search help you find the perfect
               home.
             </p>
@@ -830,9 +942,31 @@ export default function HomePage() {
               borderColor: "#001C6B",
               borderRadius: 24,
               padding: 20,
+              backgroundColor: "white",
+              transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#001C6B";
+              e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = "white";
+              });
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "white";
+              e.currentTarget.style.boxShadow = "none";
+
+              const childParagraphs = e.currentTarget.querySelectorAll("p");
+              childParagraphs.forEach((p) => {
+                p.style.color = p.dataset.defaultColor || "#1B1B1B";
+              });
             }}
           >
             <p
+              data-default-color="#1B1B1B"
               style={{
                 color: "#1B1B1B",
                 fontWeight: "600",
@@ -842,7 +976,10 @@ export default function HomePage() {
             >
               Secure Transactions
             </p>
-            <p style={{ color: "#1B1B1BCC", fontSize: 16 }}>
+            <p
+              data-default-color="#1B1B1BCC"
+              style={{ color: "#1B1B1BCC", fontSize: 16 }}
+            >
               We prioritize your safety with secure, hassle-free processes.
             </p>
           </div>
@@ -878,6 +1015,7 @@ export default function HomePage() {
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: 20,
             padding: 20,
+            margin: "20px 0",
           }}
         >
           {Array.from({ length: 6 }).map((_, index) => (
@@ -885,7 +1023,7 @@ export default function HomePage() {
               key={index}
               onClick={() => {}}
               style={{
-                height: 450,
+                height: 460,
                 width: 350,
                 borderRadius: 20,
                 backgroundColor: "white",
@@ -1155,6 +1293,636 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+        <Button
+          style={{
+            backgroundColor: "#001C6B",
+            color: "white",
+            fontSize: 16,
+            fontWeight: "500",
+            height: 48,
+            width: "auto",
+            padding: "10px 16px",
+            borderRadius: 12,
+          }}
+          onClick={() => {}}
+        >
+          View All Properties
+        </Button>
+      </div>
+      {/* Cities with listing */}
+      <div
+        style={{
+          backgroundColor: "#f2f6fa",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 50,
+          overflow: "hidden",
+        }}
+      >
+        <h2
+          style={{
+            color: "#1b1b1b",
+            fontSize: 42,
+            fontWeight: "600",
+            lineHeight: 0,
+          }}
+        >
+          Cities With Listing
+        </h2>
+        <p style={{ color: "#1b1b1b", fontSize: 16, lineHeight: 0 }}>
+          Destinations we love the most
+        </p>
+        <div
+          style={{
+            marginTop: 40,
+            width: "100vw",
+            overflow: "hidden",
+            position: "relative",
+          }}
+        >
+          <div
+            ref={topScrollContainerRef}
+            style={{
+              display: "flex",
+              gap: 20,
+              animation: "scrollLeft 10s linear infinite",
+            }}
+            onMouseEnter={() => {
+              const container = topScrollContainerRef.current;
+              if (container) {
+                container.style.animationPlayState = "paused";
+              }
+            }}
+            onMouseLeave={() => {
+              const container = topScrollContainerRef.current;
+              if (container) {
+                container.style.animationPlayState = "running";
+              }
+            }}
+          >
+            {[
+              {
+                src: Chennai,
+                label: "Chennai",
+                properties: "1000+ properties",
+              },
+              {
+                src: Coimbatore,
+                label: "Coimbatore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Madurai,
+                label: "Madurai",
+                properties: "1000+ properties",
+              },
+              { src: Trichy, label: "Trichy", properties: "1000+ properties" },
+              {
+                src: Bangalore,
+                label: "Bangalore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tirunelvelli,
+                label: "Tirunelvelli",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tiruppur,
+                label: "Tiruppur",
+                properties: "1000+ properties",
+              },
+              { src: Erode, label: "Erode", properties: "1000+ properties" },
+              { src: Salem, label: "Salem", properties: "1000+ properties" },
+            ].map((city, index) => (
+              <div
+                key={index}
+                style={{
+                  height: 230,
+                  width: 230,
+                  borderRadius: 20,
+                  position: "relative",
+                  flex: "0 0 auto",
+                }}
+              >
+                <img
+                  src={city.src}
+                  alt={city.label}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Black Blur Overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Text at Bottom Left */}
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 25,
+                    left: 20,
+                    color: "white",
+                    fontSize: 24,
+                    fontWeight: "600",
+                    zIndex: 2,
+                  }}
+                >
+                  {city.label}
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 20,
+                    color: "white",
+                    fontSize: 18,
+                    zIndex: 2,
+                  }}
+                >
+                  {city.properties}
+                </p>
+              </div>
+            ))}
+            {/* Duplicate the cards for seamless scrolling */}
+            {[
+              {
+                src: Chennai,
+                label: "Chennai",
+                properties: "1000+ properties",
+              },
+              {
+                src: Coimbatore,
+                label: "Coimbatore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Madurai,
+                label: "Madurai",
+                properties: "1000+ properties",
+              },
+              { src: Trichy, label: "Trichy", properties: "1000+ properties" },
+              {
+                src: Bangalore,
+                label: "Bangalore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tirunelvelli,
+                label: "Tirunelvelli",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tiruppur,
+                label: "Tiruppur",
+                properties: "1000+ properties",
+              },
+              { src: Erode, label: "Erode", properties: "1000+ properties" },
+              { src: Salem, label: "Salem", properties: "1000+ properties" },
+            ].map((city, index) => (
+              <div
+                key={`duplicate-${index}`}
+                style={{
+                  height: 230,
+                  width: 230,
+                  borderRadius: 20,
+                  position: "relative",
+                  flex: "0 0 auto",
+                }}
+              >
+                <img
+                  src={city.src}
+                  alt={city.label}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Black Blur Overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Text at Bottom Left */}
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 25,
+                    left: 20,
+                    color: "white",
+                    fontSize: 24,
+                    fontWeight: "600",
+                    zIndex: 2,
+                  }}
+                >
+                  {city.label}
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 20,
+                    color: "white",
+                    fontSize: 18,
+                    zIndex: 2,
+                  }}
+                >
+                  {city.properties}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div
+          style={{
+            margin: "20px 0",
+            width: "100vw",
+            overflow: "hidden",
+            position: "relative",
+          }}
+        >
+          <div
+            ref={bottomScrollContainerRef}
+            style={{
+              display: "flex",
+              gap: 20,
+              animation: "scrollRight 10s linear infinite",
+            }}
+            onMouseEnter={() => {
+              const container = bottomScrollContainerRef.current;
+              if (container) {
+                container.style.animationPlayState = "paused";
+              }
+            }}
+            onMouseLeave={() => {
+              const container = bottomScrollContainerRef.current;
+              if (container) {
+                container.style.animationPlayState = "running";
+              }
+            }}
+          >
+            {[
+              {
+                src: Chennai,
+                label: "Chennai",
+                properties: "1000+ properties",
+              },
+              {
+                src: Coimbatore,
+                label: "Coimbatore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Madurai,
+                label: "Madurai",
+                properties: "1000+ properties",
+              },
+              { src: Trichy, label: "Trichy", properties: "1000+ properties" },
+              {
+                src: Bangalore,
+                label: "Bangalore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tirunelvelli,
+                label: "Tirunelvelli",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tiruppur,
+                label: "Tiruppur",
+                properties: "1000+ properties",
+              },
+              { src: Erode, label: "Erode", properties: "1000+ properties" },
+              { src: Salem, label: "Salem", properties: "1000+ properties" },
+            ].map((city, index) => (
+              <div
+                key={index}
+                style={{
+                  height: 230,
+                  width: 230,
+                  borderRadius: 20,
+                  position: "relative",
+                  flex: "0 0 auto",
+                }}
+              >
+                <img
+                  src={city.src}
+                  alt={city.label}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Black Blur Overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Text at Bottom Left */}
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 25,
+                    left: 20,
+                    color: "white",
+                    fontSize: 24,
+                    fontWeight: "600",
+                    zIndex: 2,
+                  }}
+                >
+                  {city.label}
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 20,
+                    color: "white",
+                    fontSize: 18,
+                    zIndex: 2,
+                  }}
+                >
+                  {city.properties}
+                </p>
+              </div>
+            ))}
+            {/* Duplicate the cards for seamless scrolling */}
+            {[
+              {
+                src: Chennai,
+                label: "Chennai",
+                properties: "1000+ properties",
+              },
+              {
+                src: Coimbatore,
+                label: "Coimbatore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Madurai,
+                label: "Madurai",
+                properties: "1000+ properties",
+              },
+              { src: Trichy, label: "Trichy", properties: "1000+ properties" },
+              {
+                src: Bangalore,
+                label: "Bangalore",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tirunelvelli,
+                label: "Tirunelvelli",
+                properties: "1000+ properties",
+              },
+              {
+                src: Tiruppur,
+                label: "Tiruppur",
+                properties: "1000+ properties",
+              },
+              { src: Erode, label: "Erode", properties: "1000+ properties" },
+              { src: Salem, label: "Salem", properties: "1000+ properties" },
+            ].map((city, index) => (
+              <div
+                key={`duplicate-${index}`}
+                style={{
+                  height: 230,
+                  width: 230,
+                  borderRadius: 20,
+                  position: "relative",
+                  flex: "0 0 auto",
+                }}
+              >
+                <img
+                  src={city.src}
+                  alt={city.label}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Black Blur Overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    borderRadius: 20,
+                  }}
+                />
+                {/* Text at Bottom Left */}
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 25,
+                    left: 20,
+                    color: "white",
+                    fontSize: 24,
+                    fontWeight: "600",
+                    zIndex: 2,
+                  }}
+                >
+                  {city.label}
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 20,
+                    color: "white",
+                    fontSize: 18,
+                    zIndex: 2,
+                  }}
+                >
+                  {city.properties}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>
+          {`
+            @keyframes scrollLeft {
+              0% {
+                  transform: translateX(0);
+              }
+              100% {
+                  transform: translateX(-50%);
+              }
+            }
+            @keyframes scrollRight {
+              0% {
+                  transform: translateX(-50%);
+              }
+              100% {
+                  transform: translateX(0);
+              }
+            }
+          `}
+        </style>
+      </div>
+      {/* Info Card */}
+      <div
+        style={{
+          backgroundColor: "#f2f6fa",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 50,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: 325,
+            width: "80%",
+            borderRadius: 40,
+            background: "linear-gradient(to right, #001C6B, #0037D1)",
+            marginBottom: 120,
+            padding: "20px 40px",
+            position: "relative",
+          }}
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.currentTarget.style.background = `radial-gradient(circle at ${x}px ${y}px, #0037D1, #001C6B)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background =
+              "linear-gradient(to right, #001C6B, #0037D1)";
+          }}
+        >
+          <img src={Logo} style={{ width: 54 }} />
+          <p style={{ color: "white", fontSize: 38, fontWeight: "500" }}>
+            Esthell Golden
+            <br /> Square
+          </p>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: 20,
+            }}
+          >
+            <Button
+              onClick={() => {}}
+              style={{
+                backgroundColor: "white",
+                padding: "10px 16px",
+                height: 48,
+                borderRadius: 12,
+                color: "#001C6B",
+                fontSize: 16,
+                fontWeight: "500",
+              }}
+            >
+              Enquiry Now
+            </Button>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                cursor: "pointer",
+              }}
+              onClick={() => {}}
+            >
+              <FaPhone color="white" />
+              <p style={{ color: "white", fontSize: 16 }}>+91 7218212345</p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                cursor: "pointer",
+              }}
+              onClick={() => {}}
+            >
+              <FaLocationDot color="white" />
+              <p style={{ color: "white", fontSize: 16 }}>
+                Velachery, Chennai.
+              </p>
+            </div>
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 40,
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <p
+              style={{
+                color: "white",
+                textTransform: "uppercase",
+                fontSize: 22,
+                lineHeight: 0,
+              }}
+            >
+              Starts From
+            </p>
+            <p
+              style={{
+                color: "white",
+                fontSize: 32,
+                fontWeight: "600",
+                lineHeight: 0,
+              }}
+            >
+              1.62 Cr + Regn
+            </p>
+            <p style={{ color: "white", fontSize: 22, opacity: 0.9 }}>
+              2.5 & 3 BHK, Duplex & penthouse
+            </p>
+          </div>
+          <img
+            src={EsthellFlats}
+            style={{ width: 370, position: "absolute", bottom: 0, right: "3%" }}
+          />
         </div>
       </div>
       <Footer />
