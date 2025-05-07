@@ -2,12 +2,30 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Collapse } from "antd";
-import { DownOutlined, PlusOutlined,SearchOutlined } from "@ant-design/icons";
+import { DownOutlined, PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { Slider, Button, Checkbox } from "antd";
-
+import { FaRegHeart } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa";
+import { LuBedDouble } from "react-icons/lu";
+import { PiBathtub } from "react-icons/pi";
+import { AiOutlineHome } from "react-icons/ai";
+import Property from "../assets/property.jpg";
+import Property1 from "../assets/property1.jpg";
+import Logo from "../assets/logo.png";
 export default function ListingsPage() {
   const [disabled, setDisabled] = useState(false);
   const [selectedLocations, setSelectedLocations] = useState([]);
+  const images = [Property, Property1];
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [activeButtons, setActiveButtons] = useState({
     button1: false,
     button2: false,
@@ -44,7 +62,7 @@ export default function ListingsPage() {
       setSelectedLocations((prev) => prev.filter((item) => item !== value));
     }
   };
- 
+
   const { Panel } = Collapse;
   const onChange = (checked) => {
     setDisabled(checked);
@@ -62,13 +80,13 @@ export default function ListingsPage() {
       children: (
         <div>
           <Slider
-        min={0}
-        max={100}
-        value={value}
-        onChange={handleChange}
-        step={1}
-        tooltipVisible
-      />
+            min={0}
+            max={100}
+            value={value}
+            onChange={handleChange}
+            step={1}
+            tooltipVisible
+          />
         </div>
       ),
     },
@@ -96,8 +114,10 @@ export default function ListingsPage() {
                   backgroundColor: activeButtons.button1
                     ? "#001C6B"
                     : "transparent",
-                  width: 84,
-                  height: 32,
+                    padding: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   borderRadius: 30,
                   borderWidth: 1,
                 }}
@@ -130,10 +150,13 @@ export default function ListingsPage() {
                   backgroundColor: activeButtons.button2
                     ? "#001C6B"
                     : "transparent",
-                  width: 84,
-                  height: 32,
                   borderRadius: 30,
                   borderWidth: 1,
+                  padding: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  
                 }}
               >
                 <p
@@ -166,8 +189,10 @@ export default function ListingsPage() {
                   backgroundColor: activeButtons.button3
                     ? "#001C6B"
                     : "transparent",
-                  width: 84,
-                  height: 32,
+                    padding: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   borderRadius: 30,
                   borderWidth: 1,
                 }}
@@ -200,8 +225,10 @@ export default function ListingsPage() {
                   backgroundColor: activeButtons.button4
                     ? "#001C6B"
                     : "transparent",
-                  width: 84,
-                  height: 32,
+                    padding: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   borderRadius: 30,
                   borderWidth: 1,
                 }}
@@ -509,19 +536,35 @@ export default function ListingsPage() {
       key: "6",
       label: <span style={{ fontWeight: 500 }}>Localities</span>,
       children: (
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          <Checkbox value="GST Road" onChange={onCheck}>GST Road</Checkbox>
-          <Checkbox value="OMR" onChange={onCheck}>OMR</Checkbox>
-          <Checkbox value="Tambaram" onChange={onCheck}>Tambaram</Checkbox>
-          <Checkbox value="ECR" onChange={onCheck}>ECR</Checkbox>
-          <Checkbox value="Guduvancheri" onChange={onCheck}>Guduvancheri</Checkbox>
-          <div style={{display:"flex",flexDirection:"row",gap:6}}> 
-            <SearchOutlined/><p style={{ fontWeight: 500,
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <Checkbox value="GST Road" onChange={onCheck}>
+            GST Road
+          </Checkbox>
+          <Checkbox value="OMR" onChange={onCheck}>
+            OMR
+          </Checkbox>
+          <Checkbox value="Tambaram" onChange={onCheck}>
+            Tambaram
+          </Checkbox>
+          <Checkbox value="ECR" onChange={onCheck}>
+            ECR
+          </Checkbox>
+          <Checkbox value="Guduvancheri" onChange={onCheck}>
+            Guduvancheri
+          </Checkbox>
+          <div style={{ display: "flex", flexDirection: "row", gap: 6 }}>
+            <SearchOutlined />
+            <p
+              style={{
+                fontWeight: 500,
                 size: 14,
                 font: "poppins",
-                color: "#001C6B",}}>More Localities</p>
-         </div>
-         
+                color: "#001C6B",
+              }}
+            >
+              More Localities
+            </p>
+          </div>
         </div>
       ),
     },
@@ -844,7 +887,7 @@ export default function ListingsPage() {
                   opacity: "80%",
                 }}
               >
-               Furnished
+                Furnished
               </p>
             </Button>
             <Button
@@ -918,10 +961,9 @@ export default function ListingsPage() {
                   opacity: "80%",
                 }}
               >
-              Semifurnished
+                Semifurnished
               </p>
             </Button>
-          
           </div>
         </>
       ),
@@ -935,15 +977,15 @@ export default function ListingsPage() {
         style={{
           display: "flex",
           flexDirection: "row",
-          backgroundColor: "aliceblue",
+          backgroundColor: "rgb(242, 246, 250)",
           paddingRight: 40,
-          paddingLeft: 45,
+          paddingLeft: 40,
         }}
       >
         <div
           style={{
-            width: "30%",
-            height: "auto",
+            width: "25%",
+            height: "100%",
             borderRadius: 20,
             padding: 20,
             gap: 16,
@@ -991,7 +1033,7 @@ export default function ListingsPage() {
           />
           <Collapse
             items={items}
-            defaultActiveKey={items.map(item => item.key)}
+            defaultActiveKey={items.map((item) => item.key)}
             bordered={false}
             expandIconPosition="end"
             expandIcon={({ isActive }) => (
@@ -1002,7 +1044,391 @@ export default function ListingsPage() {
             }}
           />
         </div>
-        <div></div>
+        <div style={{ display: "flex", flexDirection: "column"}}>
+          <p style={{ font: "Poppins", fontWeight: 400, fontSize: 28 }}>
+            Featured Properties
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16,marginBottom:25 }}>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              onClick={() => {}}
+              style={{
+                height: 300,
+                width: "91%",
+                gap: 24,
+                display: "flex",
+                flexDirection: "row",
+                borderRadius: 20,
+                backgroundColor: "white",
+                borderStyle: "solid",
+                borderWidth: 1,
+                borderColor: "#00000029",
+                padding: 20,
+              }}
+            >
+              <div
+                style={{
+                  height: 289,
+                  width: 300,
+                  borderRadius: 12,
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    maxWidth: 400,
+                    margin: "0 auto",
+                  }}
+                >
+                  <img
+                    src={images[currentIndex]}
+                    alt={`Property ${currentIndex + 1}`}
+                    style={{
+                      height: 298,
+                      width: "100%",
+                      maxWidth: "400px",
+                      borderRadius: 12,
+                      objectFit: "cover",
+                    }}
+                  />
+                  {/* Prev Button */}
+                  <button
+                    onClick={handlePrev}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: 10,
+                      transform: "translateY(-50%)",
+                      backgroundColor: "#1B1B1B4D",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: 30,
+                      height: 30,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <FaChevronLeft color="white" />
+                  </button>
+                  {/* Next Button */}
+                  <button
+                    onClick={handleNext}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      right: 10,
+                      transform: "translateY(-50%)",
+                      backgroundColor: "#1B1B1B4D",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: 30,
+                      height: 30,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <FaChevronRight color="white" />
+                  </button>
+                  {/* Step Indicator */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 10,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      display: "flex",
+                      gap: 5,
+                    }}
+                  >
+                    {images.map((_, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          backgroundColor:
+                            currentIndex === index ? "#FFFFFF" : "#D9D9D9",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setCurrentIndex(index)}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "96%",
+                    position: "relative",
+                    bottom: "105%",
+                    left: "2%",
+                  }}
+                >
+                  <p
+                    style={{
+                      backgroundColor: "#42A418",
+                      textTransform: "uppercase",
+                      borderRadius: 4,
+                      color: "white",
+                      width: 54,
+                      height: 20,
+                      fontSize: 10,
+                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Verified
+                  </p>
+                  <p
+                    style={{
+                      backgroundColor: "#1B1B1B66",
+                      textTransform: "uppercase",
+                      borderRadius: 4,
+                      color: "white",
+                      width: 60,
+                      height: 22,
+                      fontSize: 14,
+                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Resale
+                  </p>
+                  <FaRegHeart color="white" />
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "60%",
+                  gap:8,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                   
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "#1b1b1b",
+                        fontSize: 16,
+                        fontWeight: "500",
+                       marginTop:-0.5,
+                      }}
+                    >
+                      {" "}
+                      Esthell Homes
+                    </p>
+                    <p
+                      style={{
+                        color: "#1b1b1b",
+                        fontSize: 14,
+                        fontWeight: "500",
+                        marginTop: -10,
+                      }}
+                    >
+                      {" "}
+                      Apartment / Plot in{" "}
+                      <span style={{ color: "#1B1B1BCC", fontWeight: "300" }}>
+                        Velachery, Chennai
+                      </span>
+                    </p>
+                  </div>
+                  <p
+                    style={{
+                      color: "#1b1b1b",
+                      fontSize: 20,
+                      fontWeight: "600",
+                      marginTop: -5,
+                    }}
+                  >
+                    ₹30L
+                  </p>
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "#0A51A30D",
+                    width: "95%",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 10,
+                      color: "#1B1B1B",
+                    }}
+                  >
+                    <LuBedDouble color="#001C6B" />2 BHK
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 10,
+                      color: "#1B1B1B",
+                    }}
+                  >
+                    <PiBathtub color="#001C6B" />3 Baths
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 10,
+                      color: "#1B1B1B",
+                    }}
+                  >
+                    <AiOutlineHome color="#001C6B" />
+                    1000 Sqft
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyItems: "center",
+                    flexDirection: "row",
+                    gap: 10,
+                  }}
+                >
+                  <p
+                    style={{
+                      color: "#1B1B1BCC",
+                    }}
+                  >
+                    Highlights:{" "}
+                  </p>
+                  <p
+                    style={{
+                      backgroundColor: "#F4F4F4",
+                      padding: 5,
+                      borderRadius: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#1B1B1B",
+                    }}
+                  >
+                    North facing
+                  </p>
+                  <p
+                    style={{
+                      backgroundColor: "#F4F4F4",
+                      padding: 5,
+                      borderRadius: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#1B1B1B",
+                    }}
+                  >
+                    North facing
+                  </p>
+                </div>
+                <p
+                    style={{
+                      color: "#1b1b1b",
+                      fontSize: 14,
+                      fontWeight: 300,
+                      marginTop:-10,
+                    }}
+                  >
+                    Lorem ipsum dolor sit amet consectetur. Sit arcu fermentum
+                    in proin morbi aliquet. Vestibulum pulvinar sed consectetur
+                    ultrices sagittis. 
+                  </p>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    style={{ display: "flex", flexDirection: "row", gap: 12 }}
+                  >
+                    <img
+                      src={Logo}
+                      style={{
+                        backgroundColor: "#0A51A3",
+                        borderRadius: 50,
+                        height: 38,
+                        width: 38,
+                      }}
+                    />
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <p
+                        style={{ fontWeight: 500, fontSize: 16, marginTop: -6 }}
+                      >
+                        Esthell Properties
+                      </p>
+                      <p
+                        style={{ fontWeight: 400, fontSize: 14, marginTop: -8 }}
+                      >
+                        Listed on: 20 mar 2025
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                   
+                      <Button
+                        style={{
+                          width: "131px",
+                          height: "48px",
+                          gap: "10px",
+                          borderRadius: "12px",
+                          backgroundColor: "#001C6B",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          font:"poppins",
+                          fontWeight: 500,
+                          fontSize: '16px',
+                          color: 'white',
+                          textAlign: 'center',
+                        }}
+                      >
+                         Enquiry Now
+                      </Button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
