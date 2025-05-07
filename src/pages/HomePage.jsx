@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroBg from "../assets/hero_bg.png";
@@ -6,6 +6,14 @@ import HeroImg from "../assets/hero_img.png";
 import { Button, Dropdown, Input, Space } from "antd";
 import { TbHomeDollar } from "react-icons/tb";
 import { DownOutlined } from "@ant-design/icons";
+import { FaRegHeart } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa";
+import { LuBedDouble } from "react-icons/lu";
+import { PiBathtub } from "react-icons/pi";
+import { AiOutlineHome } from "react-icons/ai";
+import { FaPhone } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 import SearchIcon from "../assets/search.png";
 import SelectIcon from "../assets/select.png";
 import BookIcon from "../assets/book.png";
@@ -15,12 +23,6 @@ import VillasIcon from "../assets/villas.png";
 import OfficeIcon from "../assets/office.png";
 import Property from "../assets/property.jpg";
 import Property1 from "../assets/property1.jpg";
-import { FaRegHeart } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa6";
-import { FaChevronLeft } from "react-icons/fa";
-import { LuBedDouble } from "react-icons/lu";
-import { PiBathtub } from "react-icons/pi";
-import { AiOutlineHome } from "react-icons/ai";
 import Chennai from "../assets/chennai.png";
 import Coimbatore from "../assets/coimbatore.png";
 import Madurai from "../assets/madurai.png";
@@ -32,8 +34,6 @@ import Erode from "../assets/erode.png";
 import Salem from "../assets/salem.png";
 import EsthellFlats from "../assets/esthell_apartments.png";
 import Logo from "../assets/logo.png";
-import { FaPhone } from "react-icons/fa6";
-import { FaLocationDot } from "react-icons/fa6";
 
 const items = [
   {
