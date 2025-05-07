@@ -31,6 +31,11 @@ export default function ListingsPage() {
     button20: false,
     button21: false,
   });
+  const [value, setValue] = useState(50); // Default value set to 50
+
+  const handleChange = (value) => {
+    setValue(value);
+  };
   const onCheck = (e) => {
     const value = e.target.value;
     if (e.target.checked) {
@@ -56,8 +61,14 @@ export default function ListingsPage() {
       label: <span style={{ fontWeight: 500 }}>Budget</span>,
       children: (
         <div>
-          <Slider defaultValue={30} disabled={disabled} />
-          <Slider range defaultValue={[20, 50]} disabled={disabled} />
+          <Slider
+        min={0}
+        max={100}
+        value={value}
+        onChange={handleChange}
+        step={1}
+        tooltipVisible
+      />
         </div>
       ),
     },
@@ -980,7 +991,7 @@ export default function ListingsPage() {
           />
           <Collapse
             items={items}
-            defaultActiveKey={[]}
+            defaultActiveKey={items.map(item => item.key)}
             bordered={false}
             expandIconPosition="end"
             expandIcon={({ isActive }) => (
