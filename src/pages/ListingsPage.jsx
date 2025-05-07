@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Collapse } from "antd";
+import { Collapse, Pagination } from "antd";
 import { DownOutlined, PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { Slider, Button, Checkbox } from "antd";
 import { FaRegHeart } from "react-icons/fa";
@@ -13,19 +13,20 @@ import { AiOutlineHome } from "react-icons/ai";
 import Property from "../assets/property.jpg";
 import Property1 from "../assets/property1.jpg";
 import Logo from "../assets/logo.png";
+
 export default function ListingsPage() {
+  const { Panel } = Collapse;
+  const totalProperties =8;
+  const pageSize = 5; 
+  const [currentPage, setCurrentPage] = useState(1);
+  const properties = Array.from({ length: totalProperties }, (_, index) => `Property ${index + 1}`);
+  const currentProperties = properties.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   const [disabled, setDisabled] = useState(false);
   const [selectedLocations, setSelectedLocations] = useState([]);
   const images = [Property, Property1];
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [areaValue, setAreaValue] = useState([20, 50]);
+  const [budgetValue, setBudgetValue] = useState([30, 70]);
   const [activeButtons, setActiveButtons] = useState({
     button1: false,
     button2: false,
@@ -49,11 +50,32 @@ export default function ListingsPage() {
     button20: false,
     button21: false,
   });
-  const [value, setValue] = useState(50); // Default value set to 50
-
-  const handleChange = (value) => {
-    setValue(value);
+  
+  const onPageChange = (page) => {
+    setCurrentPage(page);
   };
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+  const onShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize);
+  };
+
+  // const handleChange = (value) => {
+  //   setValue(value);
+  // };
+  // const formatValue = (value) => {
+  //   if (value >= 10000000) {
+  //     return `${(value / 10000000).toFixed(1)} Cr`; 
+  //   } else {
+  //     return `${(value / 100000).toFixed(1)} L`; 
+  //   }
+  // };
   const onCheck = (e) => {
     const value = e.target.value;
     if (e.target.checked) {
@@ -63,10 +85,15 @@ export default function ListingsPage() {
     }
   };
 
-  const { Panel } = Collapse;
-  const onChange = (checked) => {
-    setDisabled(checked);
+  
+  const onAreaChange = (newValue) => {
+    setAreaValue(newValue);  // Update area slider state
   };
+
+  const onBudgetChange = (newValue) => {
+    setBudgetValue(newValue);  // Update budget slider state
+  };
+
   const handleClick = (buttonId) => {
     setActiveButtons((prevState) => ({
       ...prevState,
@@ -78,16 +105,22 @@ export default function ListingsPage() {
       key: "1",
       label: <span style={{ fontWeight: 500 }}>Budget</span>,
       children: (
-        <div>
-          <Slider
-            min={0}
-            max={100}
-            value={value}
-            onChange={handleChange}
-            step={1}
-            tooltipVisible
-          />
-        </div>
+        <Slider
+        range
+        min={0}
+        max={100}
+        step={1}
+        value={budgetValue}  
+        onChange={onBudgetChange} 
+        trackStyle={{
+          backgroundColor: '#001C6B',
+        }}
+        handleStyle={{
+          backgroundColor: '#001C6B',
+          borderColor: '#001C6B',
+          color: '#001C6B',
+        }}
+      />
       ),
     },
     {
@@ -253,7 +286,7 @@ export default function ListingsPage() {
       label: <span style={{ fontWeight: 500 }}> Construction Status</span>,
       children: (
         <>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Button
               onClick={() => handleClick("button5")}
               icon={
@@ -526,8 +559,22 @@ export default function ListingsPage() {
       label: <span style={{ fontWeight: 500 }}>Area (sq.ft.)</span>,
       children: (
         <div>
-          <Slider defaultValue={30} disabled={disabled} />
-          <Slider range defaultValue={[20, 50]} disabled={disabled} />
+         <Slider
+          range
+          min={0}
+          max={100}
+          step={1}
+          value={areaValue} 
+          onChange={onAreaChange} 
+          trackStyle={{
+            backgroundColor: '#001C6B',
+          }}
+          handleStyle={{
+            backgroundColor: '#001C6B',
+            borderColor: '#001C6B',
+            color: '#001C6B',
+          }}
+        />
         </div>
       ),
     },
@@ -593,7 +640,7 @@ export default function ListingsPage() {
                 backgroundColor: activeButtons.button12
                   ? "#001C6B"
                   : "transparent",
-                width: "auto",
+                width: 134,
                 height: 32,
                 borderRadius: 30,
                 borderWidth: 1,
@@ -630,7 +677,7 @@ export default function ListingsPage() {
                 backgroundColor: activeButtons.button13
                   ? "#001C6B"
                   : "transparent",
-                width: "auto",
+                width: 183,
                 height: 32,
                 borderRadius: 30,
                 borderWidth: 1,
@@ -979,6 +1026,7 @@ export default function ListingsPage() {
           backgroundColor: "rgb(242, 246, 250)",
           paddingRight: 40,
           paddingLeft: 40,
+          justifyContent: "space-between",
         }}
       >
         <div
@@ -1044,7 +1092,14 @@ export default function ListingsPage() {
           />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <p style={{ font: "Poppins", fontWeight: 400, fontSize: 28 }}>
+          <p
+            style={{
+              font: "Poppins",
+              fontWeight: 400,
+              fontSize: 28,
+              marginBottom: 16,
+            }}
+          >
             Featured Properties
           </p>
           <div
@@ -1055,15 +1110,16 @@ export default function ListingsPage() {
               marginBottom: 25,
             }}
           >
-            {Array.from({ length: 6 }).map((_, index) => (
+          {currentProperties.map((property, index) => (
               <div
                 key={index}
                 onClick={() => {}}
                 style={{
-                  height: 300,
-                  width: "93%",
+                  height: "100%",
+                  width: "91%",
+                  gap: 24,
                   display: "flex",
-                  justifyContent: "space-between",
+                  flexDirection: "row",
                   borderRadius: 20,
                   backgroundColor: "white",
                   borderStyle: "solid",
@@ -1092,7 +1148,6 @@ export default function ListingsPage() {
                       alt={`Property ${currentIndex + 1}`}
                       style={{
                         height: 298,
-                        width: "100%",
                         maxWidth: 400,
                         borderRadius: 12,
                         objectFit: "cover",
@@ -1216,8 +1271,8 @@ export default function ListingsPage() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    width: "60%",
-                    gap: 8,
+                    width: "100%",
+                    gap: 6,
                   }}
                 >
                   <div
@@ -1368,8 +1423,7 @@ export default function ListingsPage() {
                     }}
                   >
                     Lorem ipsum dolor sit amet consectetur. Sit arcu fermentum
-                    in proin morbi aliquet. Vestibulum pulvinar sed consectetur
-                    ultrices sagittis.
+                    in proin morbi aliquet ultrices sagittis.
                   </p>
                   <div
                     style={{
@@ -1395,7 +1449,7 @@ export default function ListingsPage() {
                           style={{
                             fontWeight: 500,
                             fontSize: 16,
-                            marginTop: -6,
+                            marginTop: -5,
                           }}
                         >
                           Esthell Properties
@@ -1404,7 +1458,7 @@ export default function ListingsPage() {
                           style={{
                             fontWeight: 400,
                             fontSize: 14,
-                            marginTop: -8,
+                            marginTop: -12,
                           }}
                         >
                           Listed on: 20 mar 2025
@@ -1427,6 +1481,7 @@ export default function ListingsPage() {
                           fontSize: "16px",
                           color: "white",
                           textAlign: "center",
+                          marginTop:-8,
                         }}
                       >
                         Enquiry Now
@@ -1436,6 +1491,23 @@ export default function ListingsPage() {
                 </div>
               </div>
             ))}
+          </div>
+          <div>
+            <Pagination
+               align="end"
+               showSizeChanger={false} 
+               defaultCurrent={3}     
+               current={currentPage}
+               pageSize={pageSize}
+               total={totalProperties}
+               onChange={onPageChange}
+               style={{
+                marginBottom:25,
+                marginRight:30,
+                color:"#94A3B8"
+          
+               }}    
+            />
           </div>
         </div>
       </div>
