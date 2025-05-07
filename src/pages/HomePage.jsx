@@ -874,277 +874,287 @@ export default function HomePage() {
         </p>
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: 20,
+            padding: 20,
           }}
         >
-          <div
-            onClick={() => {}}
-            style={{
-              height: 450,
-              width: 363.33,
-              borderRadius: 20,
-              backgroundColor: "white",
-              borderStyle: "solid",
-              borderWidth: 1,
-              borderColor: "#00000029",
-              padding: 20,
-            }}
-          >
+          {Array.from({ length: 6 }).map((_, index) => (
             <div
+              key={index}
+              onClick={() => {}}
               style={{
-                height: 289,
-                width: "100%",
-                borderRadius: 12,
+                height: 450,
+                width: 350,
+                borderRadius: 20,
+                backgroundColor: "white",
+                borderStyle: "solid",
+                borderWidth: 1,
+                borderColor: "#00000029",
+                padding: 20,
               }}
             >
               <div
                 style={{
-                  position: "relative",
+                  height: 289,
                   width: "100%",
-                  maxWidth: 400,
-                  margin: "0 auto",
+                  borderRadius: 12,
                 }}
               >
-                <img
-                  src={images[currentIndex]}
-                  alt={`Property ${currentIndex + 1}`}
-                  style={{
-                    height: 289,
-                    width: "100%",
-                    borderRadius: 12,
-                    objectFit: "cover",
-                  }}
-                />
-                {/* Prev Button */}
-                <button
-                  onClick={handlePrev}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: 10,
-                    transform: "translateY(-50%)",
-                    backgroundColor: "#1B1B1B4D",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: 30,
-                    height: 30,
-                    cursor: "pointer",
-                  }}
-                >
-                  <FaChevronLeft color="white" />
-                </button>
-                {/* Next Button */}
-                <button
-                  onClick={handleNext}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    right: 10,
-                    transform: "translateY(-50%)",
-                    backgroundColor: "#1B1B1B4D",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: 30,
-                    height: 30,
-                    cursor: "pointer",
-                  }}
-                >
-                  <FaChevronRight color="white" />
-                </button>
-                {/* Step Indicator */}
                 <div
                   style={{
-                    position: "absolute",
-                    bottom: 10,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    display: "flex",
-                    gap: 5,
+                    position: "relative",
+                    width: "100%",
+                    maxWidth: 400,
+                    margin: "0 auto",
                   }}
                 >
-                  {images.map((_, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        width: 8,
-                        height: 8,
-                        borderRadius: "50%",
-                        backgroundColor:
-                          currentIndex === index ? "#FFFFFF" : "#D9D9D9",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => setCurrentIndex(index)}
-                    ></div>
-                  ))}
+                  <img
+                    src={images[currentIndex]}
+                    alt={`Property ${currentIndex + 1}`}
+                    style={{
+                      height: 289,
+                      width: "100%",
+                      maxWidth: "400px",
+                      borderRadius: 12,
+                      objectFit: "cover",
+                    }}
+                  />
+                  {/* Prev Button */}
+                  <button
+                    onClick={handlePrev}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: 10,
+                      transform: "translateY(-50%)",
+                      backgroundColor: "#1B1B1B4D",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: 30,
+                      height: 30,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <FaChevronLeft color="white" />
+                  </button>
+                  {/* Next Button */}
+                  <button
+                    onClick={handleNext}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      right: 10,
+                      transform: "translateY(-50%)",
+                      backgroundColor: "#1B1B1B4D",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: 30,
+                      height: 30,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <FaChevronRight color="white" />
+                  </button>
+                  {/* Step Indicator */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 10,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      display: "flex",
+                      gap: 5,
+                    }}
+                  >
+                    {images.map((_, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          backgroundColor:
+                            currentIndex === index ? "#FFFFFF" : "#D9D9D9",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setCurrentIndex(index)}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "96%",
+                    position: "relative",
+                    bottom: "103%",
+                    left: "2%",
+                  }}
+                >
+                  <p
+                    style={{
+                      backgroundColor: "#42A418",
+                      textTransform: "uppercase",
+                      borderRadius: 4,
+                      color: "white",
+                      width: 54,
+                      height: 20,
+                      fontSize: 10,
+                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Verified
+                  </p>
+                  <p
+                    style={{
+                      backgroundColor: "#1B1B1B66",
+                      textTransform: "uppercase",
+                      borderRadius: 4,
+                      color: "white",
+                      width: 60,
+                      height: 22,
+                      fontSize: 14,
+                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Resale
+                  </p>
+                  <FaRegHeart color="white" />
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      color: "#1b1b1b",
+                      fontSize: 16,
+                      fontWeight: "500",
+                      marginBottom: -10,
+                    }}
+                  >
+                    Esthell Homes
+                  </p>
+                  <p
+                    style={{
+                      color: "#1b1b1b",
+                      fontSize: 14,
+                      fontWeight: "500",
+                    }}
+                  >
+                    Apartment / Plot in{" "}
+                    <span style={{ color: "#1B1B1BCC", fontWeight: "300" }}>
+                      Velachery, Chennai
+                    </span>
+                  </p>
+                </div>
+                <p
+                  style={{ color: "#1b1b1b", fontSize: 20, fontWeight: "600" }}
+                >
+                  ₹30L
+                </p>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "#0A51A30D",
+                  width: "95%",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: 10,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    color: "#1B1B1B",
+                  }}
+                >
+                  <LuBedDouble color="#001C6B" />2 BHK
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    color: "#1B1B1B",
+                  }}
+                >
+                  <PiBathtub color="#001C6B" />3 Baths
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    color: "#1B1B1B",
+                  }}
+                >
+                  <AiOutlineHome color="#001C6B" />
+                  1000 Sqft
                 </div>
               </div>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "96%",
-                  position: "relative",
-                  bottom: "103%",
-                  left: "2%",
+                  justifyContent: "flex-start",
+                  gap: 10,
                 }}
               >
+                <p style={{ color: "#1B1B1BCC" }}>Highlights: </p>
                 <p
                   style={{
-                    backgroundColor: "#42A418",
-                    textTransform: "uppercase",
+                    backgroundColor: "#F4F4F4",
+                    padding: 5,
                     borderRadius: 4,
-                    color: "white",
-                    width: 54,
-                    height: 20,
-                    fontSize: 10,
-                    fontWeight: "500",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    color: "#1B1B1B",
                   }}
                 >
-                  Verified
+                  North facing
                 </p>
                 <p
                   style={{
-                    backgroundColor: "#1B1B1B66",
-                    textTransform: "uppercase",
+                    backgroundColor: "#F4F4F4",
+                    padding: 5,
                     borderRadius: 4,
-                    color: "white",
-                    width: 60,
-                    height: 22,
-                    fontSize: 14,
-                    fontWeight: "500",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    color: "#1B1B1B",
                   }}
                 >
-                  Resale
-                </p>
-                <FaRegHeart color="white" />
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "space-between",
-              }}
-            >
-              <div>
-                <p
-                  style={{
-                    color: "#1b1b1b",
-                    fontSize: 16,
-                    fontWeight: "500",
-                    marginBottom: -10,
-                  }}
-                >
-                  Esthell Homes
-                </p>
-                <p
-                  style={{ color: "#1b1b1b", fontSize: 14, fontWeight: "500" }}
-                >
-                  Apartment / Plot in{" "}
-                  <span style={{ color: "#1B1B1BCC", fontWeight: "300" }}>
-                    Velachery, Chennai
-                  </span>
+                  North facing
                 </p>
               </div>
-              <p style={{ color: "#1b1b1b", fontSize: 20, fontWeight: "600" }}>
-                ₹30L
-              </p>
             </div>
-            <div
-              style={{
-                backgroundColor: "#0A51A30D",
-                width: "95%",
-                borderRadius: 8,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: 10,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  color: "#1B1B1B",
-                }}
-              >
-                <LuBedDouble color="#001C6B" />2 BHK
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  color: "#1B1B1B",
-                }}
-              >
-                <PiBathtub color="#001C6B" />3 Baths
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  color: "#1B1B1B",
-                }}
-              >
-                <AiOutlineHome color="#001C6B" />
-                1000 Sqft
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                gap: 10,
-              }}
-            >
-              <p style={{ color: "#1B1B1BCC" }}>Highlights: </p>
-              <p
-                style={{
-                  backgroundColor: "#F4F4F4",
-                  padding: 5,
-                  borderRadius: 4,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#1B1B1B",
-                }}
-              >
-                North facing
-              </p>
-              <p
-                style={{
-                  backgroundColor: "#F4F4F4",
-                  padding: 5,
-                  borderRadius: 4,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#1B1B1B",
-                }}
-              >
-                North facing
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <Footer />
