@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Collapse, Pagination } from "antd";
+import { Collapse, Pagination, Dropdown, Input, Space } from "antd";
 import { DownOutlined, PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { Slider, Button, Checkbox } from "antd";
+import { TbHomeDollar } from "react-icons/tb";
 import { FaRegHeart } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa";
@@ -12,15 +13,26 @@ import { PiBathtub } from "react-icons/pi";
 import { AiOutlineHome } from "react-icons/ai";
 import Property from "../assets/property.jpg";
 import Property1 from "../assets/property1.jpg";
+import HeroBg from "../assets/hero_bg.png";
+import HeroImg from "../assets/hero_img.png";
 import Logo from "../assets/logo.png";
+import { FaPhone } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
+import EsthellFlats from "../assets/esthell_apartments.png";
 
 export default function ListingsPage() {
   const { Panel } = Collapse;
-  const totalProperties =8;
-  const pageSize = 5; 
+  const totalProperties = 8;
+  const pageSize = 5;
   const [currentPage, setCurrentPage] = useState(1);
-  const properties = Array.from({ length: totalProperties }, (_, index) => `Property ${index + 1}`);
-  const currentProperties = properties.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const properties = Array.from(
+    { length: totalProperties },
+    (_, index) => `Property ${index + 1}`
+  );
+  const currentProperties = properties.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
   const [disabled, setDisabled] = useState(false);
   const [selectedLocations, setSelectedLocations] = useState([]);
   const images = [Property, Property1];
@@ -50,7 +62,7 @@ export default function ListingsPage() {
     button20: false,
     button21: false,
   });
-  
+
   const onPageChange = (page) => {
     setCurrentPage(page);
   };
@@ -71,9 +83,9 @@ export default function ListingsPage() {
   // };
   // const formatValue = (value) => {
   //   if (value >= 10000000) {
-  //     return `${(value / 10000000).toFixed(1)} Cr`; 
+  //     return `${(value / 10000000).toFixed(1)} Cr`;
   //   } else {
-  //     return `${(value / 100000).toFixed(1)} L`; 
+  //     return `${(value / 100000).toFixed(1)} L`;
   //   }
   // };
   const onCheck = (e) => {
@@ -85,13 +97,12 @@ export default function ListingsPage() {
     }
   };
 
-  
   const onAreaChange = (newValue) => {
-    setAreaValue(newValue);  // Update area slider state
+    setAreaValue(newValue); // Update area slider state
   };
 
   const onBudgetChange = (newValue) => {
-    setBudgetValue(newValue);  // Update budget slider state
+    setBudgetValue(newValue); // Update budget slider state
   };
 
   const handleClick = (buttonId) => {
@@ -100,27 +111,56 @@ export default function ListingsPage() {
       [buttonId]: !prevState[buttonId],
     }));
   };
+  const dropDownItems = [
+    {
+      key: "1",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          1st menu item
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          2nd menu item
+        </a>
+      ),
+      //   icon: <SmileOutlined />,
+      //   disabled: true,
+    },
+    {
+      key: "3",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          3rd menu item
+        </a>
+      ),
+      //   disabled: true,
+    },
+  ];
   const items = [
     {
       key: "1",
       label: <span style={{ fontWeight: 500 }}>Budget</span>,
       children: (
         <Slider
-        range
-        min={0}
-        max={100}
-        step={1}
-        value={budgetValue}  
-        onChange={onBudgetChange} 
-        trackStyle={{
-          backgroundColor: '#001C6B',
-        }}
-        handleStyle={{
-          backgroundColor: '#001C6B',
-          borderColor: '#001C6B',
-          color: '#001C6B',
-        }}
-      />
+          range
+          min={0}
+          max={100}
+          step={1}
+          value={budgetValue}
+          onChange={onBudgetChange}
+          trackStyle={{
+            backgroundColor: "#001C6B",
+          }}
+          handleStyle={{
+            backgroundColor: "#001C6B",
+            borderColor: "#001C6B",
+            color: "#001C6B",
+          }}
+        />
       ),
     },
     {
@@ -559,22 +599,22 @@ export default function ListingsPage() {
       label: <span style={{ fontWeight: 500 }}>Area (sq.ft.)</span>,
       children: (
         <div>
-         <Slider
-          range
-          min={0}
-          max={100}
-          step={1}
-          value={areaValue} 
-          onChange={onAreaChange} 
-          trackStyle={{
-            backgroundColor: '#001C6B',
-          }}
-          handleStyle={{
-            backgroundColor: '#001C6B',
-            borderColor: '#001C6B',
-            color: '#001C6B',
-          }}
-        />
+          <Slider
+            range
+            min={0}
+            max={100}
+            step={1}
+            value={areaValue}
+            onChange={onAreaChange}
+            trackStyle={{
+              backgroundColor: "#001C6B",
+            }}
+            handleStyle={{
+              backgroundColor: "#001C6B",
+              borderColor: "#001C6B",
+              color: "#001C6B",
+            }}
+          />
         </div>
       ),
     },
@@ -1021,6 +1061,256 @@ export default function ListingsPage() {
       <Header />
       <div
         style={{
+          position: "relative",
+          height: 250,
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <img
+          src={HeroBg}
+          style={{
+            width: "100%",
+            objectFit: "cover",
+            height: "100%",
+            filter: "blur(5px)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backdropFilter: "blur(5px)",
+            zIndex: 1,
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+            justifyContent: "center",
+            position: "absolute",
+            zIndex: 100,
+            top: "25%",
+            left: "5%",
+            maxWidth: "73%", //new added
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 20,
+              flexWrap: "wrap", //new added
+            }}
+          >
+            <Button
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                backgroundColor: "#001C6B",
+                height: 44,
+                width: "auto",
+                borderRadius: 12,
+                color: "white",
+                border: "none",
+                fontSize: 16,
+                fontWeight: "500",
+              }}
+              onClick={() => {}}
+            >
+              <TbHomeDollar color="white" />
+              Buy a Property
+            </Button>
+            <Button
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                backgroundColor: "#FFFFFF",
+                height: 44,
+                width: "auto",
+                borderRadius: 12,
+                color: "#2D2D2D99",
+                border: "none",
+                fontSize: 16,
+                fontWeight: "500",
+              }}
+              onClick={() => {}}
+            >
+              <TbHomeDollar color="#2D2D2D99" />
+              Rent a Property
+            </Button>
+            <Button
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                backgroundColor: "#FFFFFF",
+                height: 44,
+                width: "auto",
+                borderRadius: 12,
+                color: "#2D2D2D99",
+                border: "none",
+                fontSize: 16,
+                fontWeight: "500",
+              }}
+              onClick={() => {}}
+            >
+              <TbHomeDollar color="#2D2D2D99" />
+              Commercial
+            </Button>
+          </div>
+          <div
+            style={{
+              height: 40,
+              backgroundColor: "white",
+              width: "100%",
+              borderRadius: 16,
+              marginTop: 20,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: 20,
+            }}
+          >
+            {/* Location input */}
+            <Input
+              style={{
+                height: 44,
+                width: 130,
+                borderWidth: 1,
+                borderColor: "#0A51A333",
+                borderRadius: 8,
+                marginRight: 10,
+              }}
+              placeholder="Location"
+            />
+            {/* Property Type */}
+            <Dropdown menu={{ items: dropDownItems }}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space
+                  style={{
+                    height: 44,
+                    width: 150,
+                    borderStyle: "solid",
+                    borderWidth: 1,
+                    borderColor: "#0A51A333",
+                    borderRadius: 8,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    color: "#BFBFBF",
+                    justifyContent: "space-between",
+                    marginRight: 10,
+                  }}
+                >
+                  Property Type
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+            {/* Property Size */}
+            <Dropdown menu={{ items: dropDownItems }}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space
+                  style={{
+                    height: 44,
+                    width: 150,
+                    borderStyle: "solid",
+                    borderWidth: 1,
+                    borderColor: "#0A51A333",
+                    borderRadius: 8,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    color: "#BFBFBF",
+                    justifyContent: "space-between",
+                    marginRight: 10,
+                  }}
+                >
+                  Property Size
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+            {/* Min Range */}
+            <Dropdown menu={{ items: dropDownItems }}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space
+                  style={{
+                    height: 44,
+                    width: 150,
+                    borderStyle: "solid",
+                    borderWidth: 1,
+                    borderColor: "#0A51A333",
+                    borderRadius: 8,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    color: "#BFBFBF",
+                    justifyContent: "space-between",
+                    marginRight: 10,
+                  }}
+                >
+                  Min Range
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+            {/* Max range */}
+            <Dropdown menu={{ items: dropDownItems }}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space
+                  style={{
+                    height: 44,
+                    width: 150,
+                    borderStyle: "solid",
+                    borderWidth: 1,
+                    borderColor: "#0A51A333",
+                    borderRadius: 8,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    color: "#BFBFBF",
+                    justifyContent: "space-between",
+                    marginRight: 10,
+                  }}
+                >
+                  max Range
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+            {/* Search */}
+            <Button
+              onClick={() => {}}
+              style={{
+                backgroundColor: "#001C6B",
+                color: "white",
+                fontSize: 16,
+                fontWeight: 500,
+                height: 48,
+                paddingLeft: 25,
+                paddingRight: 25,
+                borderRadius: 12,
+              }}
+            >
+              Search
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
           display: "flex",
           flexDirection: "row",
           backgroundColor: "rgb(242, 246, 250)",
@@ -1110,7 +1400,7 @@ export default function ListingsPage() {
               marginBottom: 25,
             }}
           >
-          {currentProperties.map((property, index) => (
+            {currentProperties.map((property, index) => (
               <div
                 key={index}
                 onClick={() => {}}
@@ -1481,7 +1771,7 @@ export default function ListingsPage() {
                           fontSize: "16px",
                           color: "white",
                           textAlign: "center",
-                          marginTop:-8,
+                          marginTop: -8,
                         }}
                       >
                         Enquiry Now
@@ -1494,21 +1784,146 @@ export default function ListingsPage() {
           </div>
           <div>
             <Pagination
-               align="end"
-               showSizeChanger={false} 
-               defaultCurrent={3}     
-               current={currentPage}
-               pageSize={pageSize}
-               total={totalProperties}
-               onChange={onPageChange}
-               style={{
-                marginBottom:25,
-                marginRight:30,
-                color:"#94A3B8"
-          
-               }}    
+              align="end"
+              showSizeChanger={false}
+              defaultCurrent={3}
+              current={currentPage}
+              pageSize={pageSize}
+              total={totalProperties}
+              onChange={onPageChange}
+              style={{
+                marginBottom: 25,
+                marginRight: 30,
+                color: "#94A3B8",
+              }}
             />
           </div>
+        </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#f2f6fa",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 50,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: 325,
+            width: "80%",
+            borderRadius: 40,
+            background: "linear-gradient(to right, #001C6B, #0037D1)",
+            marginBottom: 120,
+            padding: "20px 40px",
+            position: "relative",
+          }}
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.currentTarget.style.background = `radial-gradient(circle at ${x}px ${y}px, #0037D1, #001C6B)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background =
+              "linear-gradient(to right, #001C6B, #0037D1)";
+          }}
+        >
+          <img src={Logo} style={{ width: 54 }} />
+          <p style={{ color: "white", fontSize: 38, fontWeight: "500" }}>
+            Esthell Golden
+            <br /> Square
+          </p>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: 20,
+            }}
+          >
+            <Button
+              onClick={() => {}}
+              style={{
+                backgroundColor: "white",
+                padding: "10px 16px",
+                height: 48,
+                borderRadius: 12,
+                color: "#001C6B",
+                fontSize: 16,
+                fontWeight: "500",
+              }}
+            >
+              Enquiry Now
+            </Button>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                cursor: "pointer",
+              }}
+              onClick={() => {}}
+            >
+              <FaPhone color="white" />
+              <p style={{ color: "white", fontSize: 16 }}>+91 7218212345</p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                cursor: "pointer",
+              }}
+              onClick={() => {}}
+            >
+              <FaLocationDot color="white" />
+              <p style={{ color: "white", fontSize: 16 }}>
+                Velachery, Chennai.
+              </p>
+            </div>
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 40,
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <p
+              style={{
+                color: "white",
+                textTransform: "uppercase",
+                fontSize: 22,
+                lineHeight: 0,
+              }}
+            >
+              Starts From
+            </p>
+            <p
+              style={{
+                color: "white",
+                fontSize: 32,
+                fontWeight: "600",
+                lineHeight: 0,
+              }}
+            >
+              1.62 Cr + Regn
+            </p>
+            <p style={{ color: "white", fontSize: 22, opacity: 0.9 }}>
+              2.5 & 3 BHK, Duplex & penthouse
+            </p>
+          </div>
+          <img
+            src={EsthellFlats}
+            style={{ width: 370, position: "absolute", bottom: 0, right: "3%" }}
+          />
         </div>
       </div>
       <Footer />
