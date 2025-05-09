@@ -76,7 +76,7 @@ export default function Header() {
           fontWeight: "500",
         }}
       >
-        Login/Signup
+       Enquiry Now
       </Button>
     </div>
   );

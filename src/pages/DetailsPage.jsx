@@ -16,7 +16,6 @@ import dimensionalView from "../assets/dimensionalView.png";
 import { LuBedDouble } from "react-icons/lu";
 import { PiBathtub } from "react-icons/pi";
 import { AiOutlineHome, AiOutlineCalendar } from "react-icons/ai";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default function AboutPage() {
@@ -484,9 +483,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Bathrooms</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>2</p>
                   </div>
                 </div>
                 {/* row2 */}
@@ -505,9 +504,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Super Built-up area sqft</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>1000</p>
                   </div>
                   <div
                     style={{
@@ -517,9 +516,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Facing</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>West</p>
                   </div>
                 </div>
                 {/* row3 */}
@@ -538,9 +537,10 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                       <p>Furnishing</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>Semi-Furnished</p>
+                  
                   </div>
                   <div
                     style={{
@@ -550,9 +550,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Car Parking</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>yes</p>
                   </div>
                 </div>
                 {/* row4 */}
@@ -571,9 +571,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Listed By</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>Dealer</p>
                   </div>
                   <div
                     style={{
@@ -583,9 +583,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Project Name</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>Sare Homes,Thiruporur.</p>
                   </div>
                 </div>
                 {/* row5 */}
@@ -604,9 +604,9 @@ export default function AboutPage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Type</p>
+                    <p>Bedrooms</p>
                     <p>:</p>
-                    <p>House & Villa</p>
+                    <p>2</p>
                   </div>
                 </div>
               </div>
@@ -784,10 +784,10 @@ export default function AboutPage() {
               alignContent: "center",
               justifyContent: "flex-start",
               padding: 20,
-              maxHeight: "80vh", // Set a max height (adjust based on your layout)
-              overflowY: "auto", // Enables scrolling
-              position: "sticky", // Make it sticky after a certain point
-              top: "20px", // Distance from top when it becomes sticky
+              maxHeight: "80vh", 
+              overflowY: "auto", 
+              position: "sticky", 
+              top: "20px", 
             }}
           >
             <p style={{ fontWeight: 600, fontSize: 20, marginTop: -5 }}>
